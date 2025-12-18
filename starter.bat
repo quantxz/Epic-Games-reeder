@@ -19,7 +19,7 @@ if not exist "%USER_HOME%\AppData\Local\Python\pythoncore-3.14-64\Scripts\pip.ex
 
 setx PATH "%PATH%;%USER_HOME%\AppData\Local\Python\pythoncore-3.14-64\;%USER_HOME%\AppData\Local\Python\pythoncore-3.14-64\Scripts\"
 
-python -m pip install pyautogui plyer
-python -m pip install --upgrade pillow
+%PYTHON_EXE% -m pip install pyautogui plyer
+%PYTHON_EXE% -m pip install --upgrade pillow
 
 echo Script finalizado, ja pode fechar esta janela
