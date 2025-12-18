@@ -23,3 +23,5 @@ setx PATH "%PATH%;%USER_HOME%\AppData\Local\Python\pythoncore-3.14-64\;%USER_HOM
 %PYTHON_EXE% -m pip install --upgrade pillow
 
 echo Script finalizado, ja pode fechar esta janela
+echo Pressione qualquer tecla para fechar...
+pause > nul
