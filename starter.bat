@@ -1,32 +1,33 @@
 @echo off
+if not exist "C:\Users\canal\AppData\Local\Python\pythoncore-3.14-64\python.exe"(
+    REM Caminho para salvar o instalador
+    set INSTALLER_PATH=C:\Users\canal\Downloads\python-3.14.0-amd64.exe
 
-REM Caminho para salvar o instalador
-set INSTALLER_PATH=C:\Users\canal\Downloads\python-3.14.0-amd64.exe
+    REM URL do instalador
+    set PYTHON_URL=https://www.python.org/ftp/python/3.14.0/python-3.14.0-amd64.exe
 
-REM URL do instalador
-set PYTHON_URL=https://www.python.org/ftp/python/3.14.0/python-3.14.0-amd64.exe
+    REM Baixando o instalador pelo PowerShell
+    powershell -Command "Invoke-WebRequest -Uri %PYTHON_URL% -OutFile %INSTALLER_PATH%"
 
-REM Baixando o instalador pelo PowerShell
-powershell -Command "Invoke-WebRequest -Uri %PYTHON_URL% -OutFile %INSTALLER_PATH%"
+    REM Verifica se o arquivo foi baixado
+    if exist "%INSTALLER_PATH%" (
+        echo Instalador baixado!
+    ) else (
+        echo Falha ao baixar o instalador.
+    )
 
-REM Verifica se o arquivo foi baixado
-if exist "%INSTALLER_PATH%" (
-    echo Instalador baixado!
-) else (
-    echo Falha ao baixar o instalador.
+    REM Caminho para o instalador (mesmo de la de cimaa)
+    set PYTHON_INSTALLER=C:\Users\canal\Downloads\python-3.14.0-amd64.exe
+
+    REM Instalação silenciosa
+    %PYTHON_INSTALLER% /quiet PrependPath=1 Include_pip=1
+
+    set PATH=C:\Users\canal\AppData\Local\Python\pythoncore-3.14-64\;C:\Users\canal\AppData\Local\Python\pythoncore-3.14-64\Scripts\;%PATH%
+
+    REM Verifica se o python foi instalado
+    python --version
+    pip --version
 )
-
-REM Caminho para o instalador (mesmo de la de cimaa)
-set PYTHON_INSTALLER=C:\Users\canal\Downloads\python-3.14.0-amd64.exe
-
-REM Instalação silenciosa
-%PYTHON_INSTALLER% /quiet InstallAllUsers=1 PrependPath=1 Include_pip=1
-
-set PATH=C:\Users\canal\AppData\Local\Python\pythoncore-3.14-64\;C:\Users\canal\AppData\Local\Python\pythoncore-3.14-64\Scripts\;%PATH%
-
-REM Verifica se o python foi instalado
-python --version
-pip --version
 
 cd "C:\"
 if not exist "Scripts" mkdir "Scripts"
