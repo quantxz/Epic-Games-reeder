@@ -6,6 +6,9 @@ import time
 from plyer import notification
 import sys
 
+subprocess.run(['taskkill', '/f', '/im', 'EpicGamesLauncher.exe'])
+time.sleep(5)
+
 hoje = datetime.today()
 dia = hoje.day
 print(hoje)
